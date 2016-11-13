@@ -1,0 +1,12 @@
+webapp:
+  build: .
+  volumes:
+    - .:/usr/src/app
+  ports:
+    - "1337:1337"
+  links:
+    - postgres
+  environment:
+    - DATABASE_URL=postgres://postgres:postgres@postgres/postgres
+postgres:
+  image: postgres
