@@ -1,5 +1,6 @@
 const AWS = require("aws-sdk")
 const route53 = new AWS.Route53()
+const uuid = require("uuid")
 
 function findHostedZone(domain) {
 
@@ -19,6 +20,20 @@ function findHostedZone(domain) {
   })
 }
 module.exports._findHostedZone = findHostedZone
+
+module.exports.createHostedZone = (domain) => {
+
+  return new Promise((resolve, reject) => {
+    var params = {
+      CallerReference: uuid.v4(),
+      Name: domain
+    };
+    route53.createHostedZone(params, function(err, data) {
+      if (err) { return reject(err) }
+      resolve(data)
+    });
+  })
+}
 
 module.exports.pointDNSToInstance = (domain, ipAddress) => {
   return new Promise((resolve, reject) => {

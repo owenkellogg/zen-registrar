@@ -18,4 +18,11 @@ describe("Route53Service", () => {
     .catch(console.error)
   })
 
+  it('#createHostedZone should create a hosted zone', done => {
+    Route53Service.createHostedZone('stevenzeiler.com').then(response => {
+      console.log(response)
+      done()
+    })
+    .catch(console.error)
+  })
 })
