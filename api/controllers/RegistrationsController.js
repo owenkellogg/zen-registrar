@@ -6,11 +6,18 @@
  */
 
 module.exports = {
-	
-
 
   /**
    * `RegistrationsController.create()`
+   */
+  /**
+   * @api {post} /registrations Register a New Domain & Launch Machine
+   * @apiName CreateRegistration
+   * @apiGroup Registration
+   *
+   * @apiParam {String} domain Domain Name to register
+   *
+   * @apiSuccess {String} id unique id of the registration
    */
   create: function (req, res) {
     return res.json({
